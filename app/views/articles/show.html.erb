@@ -1,0 +1,32 @@
+<h2>
+  <p> <%= @article.title %> </p>
+</h2>
+<p> <%= @article.text %> </p>
+<p>
+<br>
+<h4>Comments:</h4>
+  <% @article.comments.each do |comments|%>
+  <p>Author: <%= comments.author%></p>
+  <p>
+    Comment: <br>
+   <%= comments.body%>
+  </p>
+  <hr>
+<%end%>
+
+<br>
+  Pleace write comment
+</p>
+<%= form_for ([@article, @article.comments.build]) do |f| %>
+  <p>
+    <%= f.label :author %> <br>
+    <%= f.text_field :author %>
+  </p>
+   <p>
+    <%= f.label :body %> <br>
+    <%= f.text_area :body %>
+  </p>
+   <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -13,7 +13,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <i>Hi <%= current_user.email%></i>|<%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+      <i>Hi <%= current_user.username%></i>|<%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
       <%else %>
       <%= link_to 'Войти', new_user_session_path %>
     <% end %>

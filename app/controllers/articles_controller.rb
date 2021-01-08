@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:index, :show, :new, :create] #.т.е авторизация только для создания и редактирования статей
 
   def index
     @articles = Article.all

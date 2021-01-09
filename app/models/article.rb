@@ -7,4 +7,8 @@ class Article < ApplicationRecord
    def subject
      title #заголовок статьи
    end
+
+   def last_comment
+      comments.last     
+   end
 end

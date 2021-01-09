@@ -1,16 +1,43 @@
-<h1>List of articles</h1>
-<% @articles.each do |article|%>
-<h2>
-  <%= article.title %>
-</h2>
-<p>
-  <%= article.text %>
-</p>
-<p>
-  <%= link_to 'Show_article', article_path(article)%> |
-  <%= link_to 'Edit_article', edit_article_path(article)%>|
-  <%= link_to 'Destroy_article', article_path(article), method: :delete, data: {confirm: 'Действительно хотите удалить данную статью?' }%>
-</p>
+<!DOCTYPE html>
+<html>
+  <head></head>
 
-<hr />
-<%end%>
+  <body>
+  <div class="container border shadow p-3 mb-5 bg-white rounded">
+    <div class="row alert alert-light">
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 " align="center" >
+        <h3 >Список статей:</h3>
+      </div>
+    </div>
+
+    <div class="row alert alert-light " >
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 " >
+        <% @articles.each do |article|%>
+        <div class="text-primary">
+          <h2>
+            <%= article.title %>
+          </h2>
+        </div>
+        <p>
+          <div class="shadow p-3 mb-5 bg-white rounded">
+            <%= article.text %>
+          </div>
+        </p>
+        <p>
+          <%= link_to 'Перейте к статье', article_path(article)%>
+          <% if user_signed_in? %>
+          <!-- Если user_id статьи соответствует номеру id вошедшего usera тогда доступны кнопки -->
+            <% if article.user_id == current_user.id %>
+              |
+              <%= link_to 'Редактировать', edit_article_path(article)%>|
+              <%= link_to 'Удалить', article_path(article), method: :delete, data: {confirm: 'Действительно хотите удалить данную статью?' }%>
+            <% end %>
+          <% end %>
+        </p>
+        <hr />
+        <%end%>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

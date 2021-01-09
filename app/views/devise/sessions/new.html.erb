@@ -1,26 +1,47 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <div class="row alert alert-light " >
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 text-primary " align="center" >
+        <h2 >Авторизация</h2>
+      </div>
     </div>
-  <% end %>
+    <div class="row alert alert-light " >
+      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 " align="center" >
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+         <div class="col-sm-4 my-1">
+            <div class="field">
+              <%= f.label :email %><br />
+               <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"Ваш email", :class  => "form-control" %>
+              </div>
+            </div>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+        <div class="col-sm-4 my-1">
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", :placeholder =>"Введите пароль", :class  => "form-control" %>
+          </div>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Войти" , :class => "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+
+
+
+

@@ -12,5 +12,7 @@ get 'about' => 'pages#about'
 resource :contacts, only: [:new, :create], path_names: { :new => ''}  # маршруты только на отображение и отрпавку
 resources :articles do
   resources :comments , only: [:create]
+  resources :users
 end
+
 end

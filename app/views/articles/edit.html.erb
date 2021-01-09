@@ -1,14 +1,21 @@
 <h1>Edit article</h1>
 <%= form_for :article, url: article_path(@article), method: :put do |f| %>
-  <p>
-    <%= f.label :title %> <br>
-    <%= f.text_field :title %>
-  </p>
-   <p>
-    <%= f.label :text %> <br>
-    <%= f.text_area :text %>
-  </p>
-   <p>
-    <%= f.submit %>
-  </p>
+  <% if user_signed_in? %>
+    <!-- Если user_id статьи соответствует номеру id вошедшего usera тогда маршрут /edit для данной статьи будет доступен иначе скрыты поля редактирования -->
+    <% if @article.user_id == current_user.id %>
+      <p>
+        <%= f.label :title %> <br>
+        <%= f.text_field :title %>
+      </p>
+       <p>
+        <%= f.label :text %> <br>
+        <%= f.text_area :text %>
+      </p>
+       <p>
+        <%= f.submit %>
+      </p>
+      <% else %>
+      <h2>Вы не можете редактировать чужую статью!</h2>
+     <% end %> 
+   <% end %>   
 <% end %>

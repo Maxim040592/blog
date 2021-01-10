@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  contacts: #обязательно 2 пробела или один отсуп 
+    contacts_us: 'Hello'
